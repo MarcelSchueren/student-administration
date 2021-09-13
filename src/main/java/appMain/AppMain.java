@@ -12,8 +12,8 @@ public class AppMain {
         System.out.println(student2);
         System.out.println(student3);
 
-        System.out.println("student1 equal to student2: "+ student1.equals(student2));
-        System.out.println("student1 equal to student2: "+ student1.equals(student3));
+        System.out.println("student1 is equal to student2: "+ student1.equals(student2));
+        System.out.println("student1 is equal to student3: "+ student1.equals(student3));
 
         System.out.println("Number of Students: " + Student.getNumberOfStudents());
     }
