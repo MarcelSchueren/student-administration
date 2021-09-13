@@ -70,7 +70,7 @@ class StudentDBTest {
 
         StudentDB studentDB = new StudentDB(students);
 
-        String expected = "StudentsDB: Student name: Aaron, age: 25, isLongTimeStudent: false, id: 111;Student name: Berta, age: 25, isLongTimeStudent: false, id: 222;Student name: Cäsar, age: 25, isLongTimeStudent: false, id: 333;";
+        String expected = "\nStudentsDB:\nStudent name: Aaron, age: 25, isLongTimeStudent: false, id: 111;\nStudent name: Berta, age: 25, isLongTimeStudent: false, id: 222;\nStudent name: Cäsar, age: 25, isLongTimeStudent: false, id: 333;\n";
 
         //WHEN
         String actual = studentDB.toString();

@@ -35,9 +35,13 @@ public class AppMain {
         StudentDB studentDB = new StudentDB(students);
         System.out.println(Arrays.toString(studentDB.list()));
         System.out.println(studentDB.toString());
+
+        System.out.println("Random Student:");
         System.out.println(studentDB.randomStudent());
+
         studentDB.removeStudentById(111);
         System.out.println(studentDB);
+
         studentDB.addStudent(new Student("Niklas Neu", 666));
         System.out.println(studentDB);
     }

@@ -19,12 +19,15 @@ public class StudentDB {
     }
 
     public void removeStudentById(int id) {
-        for (int i = 0; i < students.length; i++) {
-            if (students[i].getId() == id) {
-                //students = null -> dann kracht's bei der toString... deshalb Versuch: Student manuell "nullen"
-                students[i] = new Student("", 0, false, 0);
+        Student[] newStudents = new Student[students.length-1];
+        int newStudentsIndex = 0;
+        for (int i = 0; i < students.length; i++){
+            if (!(students[i].getId() == id)){
+                newStudents[newStudentsIndex] = students[i];
+                newStudentsIndex++;
             }
         }
+        students = newStudents;
     }
 
 
@@ -53,9 +56,9 @@ public class StudentDB {
 
     @Override
     public String toString() {
-        String result = "StudentsDB: ";
+        String result = "\nStudentsDB:\n";
         for (Student student : students) {
-            result += student.toString();
+            result += student.toString() + "\n";
         }
         return result;
     }
