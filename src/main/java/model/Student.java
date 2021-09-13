@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Student {
     private String name = "Max Mustermann";
     private int age = 25;
@@ -45,7 +47,21 @@ public class Student {
         isLongTimeStudent = longTimeStudent;
     }
 
+    @Override
     public String toString() {
         return "Student name: " + name + ", age: " + age + ", isLongTimeStudent: " + isLongTimeStudent;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return age == student.age && isLongTimeStudent == student.isLongTimeStudent && Objects.equals(name, student.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age, isLongTimeStudent);
     }
 }

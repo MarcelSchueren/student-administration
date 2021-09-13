@@ -76,5 +76,27 @@ class StudentTest {
         assertEquals("Student name: Hans Wurst, age: 50, isLongTimeStudent: true", actual);
     }
 
+    @Test
+    void testStudentEquals1() {
+        //GIVEN
+        Student student1 = new Student("Hans Wurst", 50, true);
+        Student student2 = new Student("Hans Wurst", 50, true);
 
+        //WHEN
+        boolean actual = student1.equals(student2);
+        //THEN
+        assertTrue(actual);
+    }
+
+    @Test
+    void testStudentEquals2() {
+        //GIVEN
+        Student student1 = new Student("Hans Wurst", 50, true);
+        Student student2 = new Student("Hans Wurst", 50, false);
+
+        //WHEN
+        boolean actual = student1.equals(student2);
+        //THEN
+        assertFalse(actual);
+    }
 }
