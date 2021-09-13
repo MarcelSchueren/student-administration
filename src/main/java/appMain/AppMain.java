@@ -9,5 +9,7 @@ public class AppMain {
 
         System.out.println(student1.toString());
         System.out.println(student2.toString());
+
+        System.out.println("Number of Students: " + Student.getNumberOfStudents());
     }
 }

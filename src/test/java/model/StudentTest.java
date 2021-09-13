@@ -65,4 +65,16 @@ class StudentTest {
         //THEN
         assertTrue(student.isLongTimeStudent());
     }
+
+    @Test
+    void testStudentToString() {
+        //GIVEN
+        Student student = new Student("Hans Wurst", 50, true);
+        //WHEN
+        String actual = student.toString();
+        //THEN
+        assertEquals("Student name: Hans Wurst, age: 50, isLongTimeStudent: true", actual);
+    }
+
+
 }
