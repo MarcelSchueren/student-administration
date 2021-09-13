@@ -69,18 +69,18 @@ class StudentTest {
     @Test
     void testStudentToString() {
         //GIVEN
-        Student student = new Student("Hans Wurst", 50, true);
+        Student student = new Student("Hans Wurst", 50, true, 555);
         //WHEN
         String actual = student.toString();
         //THEN
-        assertEquals("Student name: Hans Wurst, age: 50, isLongTimeStudent: true", actual);
+        assertEquals("Student name: Hans Wurst, age: 50, isLongTimeStudent: true, id: 555;", actual);
     }
 
     @Test
     void testStudentEquals1() {
         //GIVEN
-        Student student1 = new Student("Hans Wurst", 50, true);
-        Student student2 = new Student("Hans Wurst", 50, true);
+        Student student1 = new Student("Hans Wurst", 50, true, 555);
+        Student student2 = new Student("Hans Wurst", 50, true, 555);
 
         //WHEN
         boolean actual = student1.equals(student2);
@@ -91,12 +91,13 @@ class StudentTest {
     @Test
     void testStudentEquals2() {
         //GIVEN
-        Student student1 = new Student("Hans Wurst", 50, true);
-        Student student2 = new Student("Hans Wurst", 50, false);
+        Student student1 = new Student("Hans Wurst", 50, true, 555);
+        Student student2 = new Student("Hans Wurst", 50, false, 555);
 
         //WHEN
         boolean actual = student1.equals(student2);
         //THEN
         assertFalse(actual);
     }
+
 }

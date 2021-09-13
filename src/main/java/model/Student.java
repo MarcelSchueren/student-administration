@@ -6,17 +6,34 @@ public class Student {
     private String name = "Max Mustermann";
     private int age = 25;
     private boolean isLongTimeStudent = false;
+    private int id;
+
     private static int numberOfStudents = 0;
 
     public Student() {
         numberOfStudents++;
     }
 
-    public Student(String name, int age, boolean isLongTimeStudent) {
+    public Student(String name, int id) {
+        this.name = name;
+        this.id = id;
+        numberOfStudents++;
+    }
+
+    public Student(String name, int age, boolean isLongTimeStudent, int id) {
         this.name = name;
         this.age = age;
         this.isLongTimeStudent = isLongTimeStudent;
+        this.id = id;
         numberOfStudents++;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public static int getNumberOfStudents() {
@@ -49,7 +66,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student name: " + name + ", age: " + age + ", isLongTimeStudent: " + isLongTimeStudent;
+        return "Student name: " + name + ", age: " + age + ", isLongTimeStudent: " + isLongTimeStudent + ", id: " + id + ";";
     }
 
     @Override
