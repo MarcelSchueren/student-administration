@@ -78,4 +78,55 @@ class StudentDBTest {
         //THEN
         assertEquals(actual, expected);
     }
+
+    @Test
+    void testStudentDBAddStudent(){
+        //GIVEN
+        Student student1 = new Student("Aaron", 111);
+        Student student2 = new Student("Berta", 222);
+        Student student3 = new Student("Cäsar", 333);
+
+        Student[] students = new Student[3];
+
+        students[0] = student1;
+        students[1] = student2;
+        students[2] = student3;
+
+        StudentDB studentDB = new StudentDB(students);
+
+        Student student4 = new Student("Diana", 444);
+        Student [] expected = {student1, student2, student3, student4};
+
+        //WHEN
+        studentDB.addStudent(student4);
+        Student[] actual = studentDB.list();
+
+        //THEN
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void testStudentDBRemoveStudent(){
+        //GIVEN
+        Student student1 = new Student("Aaron", 111);
+        Student student2 = new Student("Berta", 222);
+        Student student3 = new Student("Cäsar", 333);
+
+        Student[] students = new Student[3];
+
+        students[0] = student1;
+        students[1] = student2;
+        students[2] = student3;
+
+        StudentDB studentDB = new StudentDB(students);
+
+        Student [] expected = {student2, student3};
+
+        //WHEN
+        studentDB.removeStudentById(111);
+        Student[] actual = studentDB.list();
+
+        //THEN
+        assertArrayEquals(expected, actual);
+    }
 }

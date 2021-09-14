@@ -30,7 +30,6 @@ public class StudentDB {
         students = newStudents;
     }
 
-
     public void addStudent(Student student) {
         Student[] newStudents = new Student[students.length + 1];
         for (int i = 0; i < students.length; i++) {
@@ -39,7 +38,6 @@ public class StudentDB {
         newStudents[students.length] = student;
         students = newStudents;
     }
-
 
     @Override
     public boolean equals(Object o) {
