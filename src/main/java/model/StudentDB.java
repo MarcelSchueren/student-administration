@@ -1,42 +1,30 @@
 package model;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class StudentDB {
-    private Student[] students;
+    private ArrayList<Student> students;
 
-    public StudentDB(Student[] students) {
+    public void add(Student student){
+        students.add(student);
+    }
+
+    public void remove(Student student){
+        students.remove(student);
+    }
+
+    public StudentDB(ArrayList<Student> students) {
         this.students = students;
     }
 
-    public Student[] list() {
+    public ArrayList<Student> list() {
         return this.students;
     }
 
     public Student randomStudent() {
-        int random = (int) (Math.random() * students.length);
-        return students[random];
-    }
-
-    public void removeStudentById(int id) {
-        Student[] newStudents = new Student[students.length-1];
-        int newStudentsIndex = 0;
-        for (int i = 0; i < students.length; i++){
-            if (!(students[i].getId() == id)){
-                newStudents[newStudentsIndex] = students[i];
-                newStudentsIndex++;
-            }
-        }
-        students = newStudents;
-    }
-
-    public void addStudent(Student student) {
-        Student[] newStudents = new Student[students.length + 1];
-        for (int i = 0; i < students.length; i++) {
-            newStudents[i] = students[i];
-        }
-        newStudents[students.length] = student;
-        students = newStudents;
+        int random = (int) (Math.random() * students.size());
+        return students.get(random);
     }
 
     @Override
@@ -44,20 +32,21 @@ public class StudentDB {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StudentDB studentDB = (StudentDB) o;
-        return Arrays.equals(students, studentDB.students);
+        return Objects.equals(students, studentDB.students);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(students);
+        return Objects.hash(students);
     }
 
     @Override
     public String toString() {
-        String result = "\nStudentsDB:\n";
+        StringBuilder result = new StringBuilder("\nStudentsDB:\n");
         for (Student student : students) {
-            result += student.toString() + "\n";
+            result.append(student.toString());
+            result.append("\n");
         }
-        return result;
+        return result.toString();
     }
 }

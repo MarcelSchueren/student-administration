@@ -3,7 +3,7 @@ package appMain;
 import model.Student;
 import model.StudentDB;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class AppMain {
     public static void main(String[] args) {
@@ -24,25 +24,25 @@ public class AppMain {
         Student student5 = new Student("Berta", 222);
         Student student6 = new Student("Cäsar", 333);
 
-        Student[] students = new Student[3];
+        ArrayList<Student> students = new ArrayList<>();
 
-        students[0] = student4;
-        students[1] = student5;
-        students[2] = student6;
+        students.add(student4);
+        students.add(student5);
+        students.add(student6);
 
         System.out.println("Number of Students: " + Student.getNumberOfStudents());
 
         StudentDB studentDB = new StudentDB(students);
-        System.out.println(Arrays.toString(studentDB.list()));
-        System.out.println(studentDB.toString());
+        System.out.println(studentDB.list());
+        System.out.println(studentDB);
 
         System.out.println("Random Student:");
         System.out.println(studentDB.randomStudent());
 
-        studentDB.removeStudentById(111);
+        studentDB.remove(student4);
         System.out.println(studentDB);
 
-        studentDB.addStudent(new Student("Niklas Neu", 666));
+        studentDB.add(new Student("Niklas Neu", 666));
         System.out.println(studentDB);
     }
 }

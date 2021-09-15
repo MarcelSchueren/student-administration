@@ -2,71 +2,71 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentDBTest {
 
     @Test
-    void testStudentDBList_shouldBeEqual(){
+    void testStudentDBList_shouldBeEqual() {
         //GIVEN
         Student student1 = new Student("Aaron", 111);
         Student student2 = new Student("Berta", 222);
         Student student3 = new Student("Cäsar", 333);
 
-        Student[] students = new Student[3];
+        ArrayList<Student> students = new ArrayList<>();
 
-        students[0] = student1;
-        students[1] = student2;
-        students[2] = student3;
+        students.add(student1);
+        students.add(student2);
+        students.add(student3);
 
         StudentDB studentDB = new StudentDB(students);
-        Student [] expected = {student1, student2, student3};
+        ArrayList<Student> expected = new ArrayList<>(List.of(student1, student2, student3));
 
         //WHEN
-        Student[] actual = studentDB.list();
+        ArrayList<Student> actual = studentDB.list();
 
         //THEN
-        assertArrayEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
-    void testStudentDBList_shouldNotBeEqual(){
+    void testStudentDBList_shouldNotBeEqual() {
         //GIVEN
         Student student1 = new Student("Aaron", 123);
         Student student2 = new Student("Berta", 234);
         Student student3 = new Student("Cäsar", 333);
 
-        Student[] students = new Student[3];
+        ArrayList<Student> students = new ArrayList<>();
 
-        students[0] = student1;
-        students[1] = student2;
-        students[2] = student3;
+        students.add(student1);
+        students.add(student2);
+        students.add(student3);
 
         StudentDB studentDB = new StudentDB(students);
-            //Hier students im expected-array in andere Reihenfolge gebracht
-        Student [] expected = {student3, student2, student1};
+        ArrayList<Student> expected = new ArrayList<>(List.of(student2, student1, student3));
 
         //WHEN
-        Student[] actual = studentDB.list();
+        ArrayList<Student> actual = studentDB.list();
 
         //THEN
-        assertFalse(Arrays.equals(actual, expected));
+        assertNotEquals(expected, actual);
     }
 
     @Test
-    void testStudentDBToString(){
+    void testStudentDBToString() {
         //GIVEN
         Student student1 = new Student("Aaron", 111);
         Student student2 = new Student("Berta", 222);
         Student student3 = new Student("Cäsar", 333);
 
-        Student[] students = new Student[3];
+        ArrayList<Student> students = new ArrayList<>();
 
-        students[0] = student1;
-        students[1] = student2;
-        students[2] = student3;
+        students.add(student1);
+        students.add(student2);
+        students.add(student3);
 
         StudentDB studentDB = new StudentDB(students);
 
@@ -80,53 +80,53 @@ class StudentDBTest {
     }
 
     @Test
-    void testStudentDBAddStudent(){
+    void testStudentDBAddStudent() {
         //GIVEN
         Student student1 = new Student("Aaron", 111);
         Student student2 = new Student("Berta", 222);
         Student student3 = new Student("Cäsar", 333);
 
-        Student[] students = new Student[3];
+        ArrayList<Student> students = new ArrayList<>();
 
-        students[0] = student1;
-        students[1] = student2;
-        students[2] = student3;
+        students.add(student1);
+        students.add(student2);
+        students.add(student3);
 
         StudentDB studentDB = new StudentDB(students);
 
         Student student4 = new Student("Diana", 444);
-        Student [] expected = {student1, student2, student3, student4};
+        ArrayList<Student> expected = new ArrayList<>(List.of(student1, student2, student3, student4));
 
         //WHEN
-        studentDB.addStudent(student4);
-        Student[] actual = studentDB.list();
+        studentDB.add(student4);
+        ArrayList<Student> actual = studentDB.list();
 
         //THEN
-        assertArrayEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
-    void testStudentDBRemoveStudent(){
+    void testStudentDBRemoveStudent() {
         //GIVEN
         Student student1 = new Student("Aaron", 111);
         Student student2 = new Student("Berta", 222);
         Student student3 = new Student("Cäsar", 333);
 
-        Student[] students = new Student[3];
+        ArrayList<Student> students = new ArrayList<>();
 
-        students[0] = student1;
-        students[1] = student2;
-        students[2] = student3;
+        students.add(student1);
+        students.add(student2);
+        students.add(student3);
 
         StudentDB studentDB = new StudentDB(students);
 
-        Student [] expected = {student2, student3};
+        ArrayList<Student> expected = new ArrayList<>(List.of(student2, student3));
 
         //WHEN
-        studentDB.removeStudentById(111);
-        Student[] actual = studentDB.list();
+        studentDB.remove(student1);
+        ArrayList<Student> actual = studentDB.list();
 
         //THEN
-        assertArrayEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 }
