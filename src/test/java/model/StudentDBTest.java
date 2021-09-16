@@ -12,6 +12,24 @@ import static org.junit.jupiter.api.Assertions.*;
 class StudentDBTest {
 
     @Test
+    public void testAddException(){
+        //GIVEN
+        Student student1 = new Student("Anna", "MNR0001");
+        Student student2 = new Student("Bert", "MNR0002");
+        StudentDB studentDB = new StudentDB();
+        studentDB.add(student1);
+        studentDB.add(student2);
+        try {
+            //WHEN
+            studentDB.add(new Student("Anna", "MNR0001"));
+            fail();
+        } catch(RuntimeException e){
+            String actual = e.getMessage();
+            assertEquals("Alert! Student already in DB! id: MNR0001", actual);
+        }
+    }
+
+    @Test
     void testAddStudent(){
         //GIVEN
         Student student1 = new Student("Anna", "MNR0001");
