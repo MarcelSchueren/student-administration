@@ -6,7 +6,19 @@ public class StudentDB {
 
     private Map<String, Student> students = new HashMap<>();
 
+
+    public Optional<Student> findByID(String matrikelNr) {
+        if (students.containsKey(matrikelNr)) {
+            return Optional.of(students.get(matrikelNr));
+        }
+        else return Optional.empty();
+    }
+
     public void add(Student student) {
+
+        if (this.students.containsKey(student.getMatrikelNr())){
+            throw new RuntimeException("Alert! Student already in DB! id: " + student.getMatrikelNr());
+        }
         students.put(student.getMatrikelNr(), student);
     }
 

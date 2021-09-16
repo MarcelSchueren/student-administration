@@ -5,6 +5,7 @@ import model.StudentDB;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Optional;
 
 public class AppMain {
     public static void main(String[] args) {
@@ -13,11 +14,20 @@ public class AppMain {
         Student student2 = new Student("Bert", "MNR0002");
         Student student3 = new Student("Caro", "MNR0003");
 
+        Student student666 = new Student("Caro", "MNR0003");
+
         StudentDB studentDB = new StudentDB();
 
         studentDB.add(student1);
         studentDB.add(student2);
         studentDB.add(student3);
+
+        try {
+            studentDB.add(student666);
+        } catch (RuntimeException e) {
+            System.err.println("Junge! Pass mal besser auf! ");
+            e.printStackTrace();
+        }
 
         System.out.println(studentDB);
 
@@ -37,6 +47,14 @@ public class AppMain {
         System.out.println(studentDB.randomStudent());
         System.out.println(studentDB.randomStudent());
         System.out.println(studentDB.randomStudent());
+
+        Optional<Student> studentOptional = studentDB.findByID("MNR0002");
+        if (studentOptional.isPresent()) {
+            Student student = studentOptional.get();
+            System.out.println("Student gefunden: " + student);
+        } else {
+            System.out.println("Kein Student gefunden!");
+        }
 
 
 //        Student student1 = new Student("Hans Wurst", 50, true, 555);
