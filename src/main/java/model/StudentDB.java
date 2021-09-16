@@ -9,7 +9,7 @@ public class StudentDB {
 
     public Optional<Student> findByID(String matrikelNr) {
         if (students.containsKey(matrikelNr)) {
-            return Optional.of(students.get(matrikelNr));
+            return Optional.ofNullable(students.get(matrikelNr));
         }
         else return Optional.empty();
     }
@@ -41,6 +41,16 @@ public class StudentDB {
             stringBuilder.append("\n");
         });
         return stringBuilder.toString();
+    }
+
+    public void printIds(){
+        StringBuilder sb = new StringBuilder();
+        students.forEach((k, v) -> {
+            sb.append("ID: ");
+            sb.append(k);
+            sb.append("; ");
+        });
+        System.out.println(sb);
     }
 
 

@@ -2,14 +2,42 @@ package model;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentDBTest {
+
+    @Test
+    public void findById_returnOptionalWithStudent(){
+        //GIVEN
+        Student student1 = new Student("Anna", "MNR0001");
+        Student student2 = new Student("Bert", "MNR0002");
+        StudentDB studentDB = new StudentDB();
+        studentDB.add(student1);
+        studentDB.add(student2);
+        //WHEN
+        Optional<Student> actual = studentDB.findByID("MNR0001");
+        Optional<Student> expected = Optional.of(student1);
+        //THEN
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void findById_returnOptionalEmpty(){
+        //GIVEN
+        Student student1 = new Student("Anna", "MNR0001");
+        Student student2 = new Student("Bert", "MNR0002");
+        StudentDB studentDB = new StudentDB();
+        studentDB.add(student1);
+        studentDB.add(student2);
+        //WHEN
+        Optional<Student> actual = studentDB.findByID("MNR0003");
+        Optional<Student> expected = Optional.empty();
+        //THEN
+        assertEquals(expected, actual);
+    }
+
 
     @Test
     public void testAddException(){
@@ -22,7 +50,8 @@ class StudentDBTest {
         try {
             //WHEN
             studentDB.add(new Student("Anna", "MNR0001"));
-            fail();
+            fail(); //Wenn JUnit bis hier kommt, wird der Test als nicht bestanden gewertet!
+                    //die add-Methode sollte (bei einem Fehler) direkt in den catch-Block leiten.
         } catch(RuntimeException e){
             String actual = e.getMessage();
             assertEquals("Alert! Student already in DB! id: MNR0001", actual);

@@ -55,6 +55,8 @@ public class AppMain {
         } else {
             System.out.println("Kein Student gefunden!");
         }
+        System.out.println("Ids: ");
+        studentDB.printIds();
 
 
 //        Student student1 = new Student("Hans Wurst", 50, true, 555);
