@@ -8,10 +8,10 @@ public class StudentDB {
 
 
     public Optional<Student> findByID(String matrikelNr) {
-        if (students.containsKey(matrikelNr)) {
+        //if (students.containsKey(matrikelNr)) {
             return Optional.ofNullable(students.get(matrikelNr));
-        }
-        else return Optional.empty();
+        //}
+        //else return Optional.empty();
     }
 
     public void add(Student student) {
