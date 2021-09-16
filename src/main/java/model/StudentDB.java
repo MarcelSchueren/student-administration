@@ -4,17 +4,17 @@ import java.util.*;
 
 public class StudentDB {
 
-    private HashMap<String, Student> students = new HashMap<>();
+    private Map<String, Student> students = new HashMap<>();
 
-    public void add(Student student){
+    public void add(Student student) {
         students.put(student.getMatrikelNr(), student);
     }
 
-    public void removeByNr(String matrikelNr){
+    public void removeByNr(String matrikelNr) {
         students.remove(matrikelNr);
     }
 
-    public HashMap<String, Student> list(){
+    public Map<String, Student> list() {
         return this.students;
     }
 
@@ -34,8 +34,7 @@ public class StudentDB {
 
     public Student randomStudent() {
         List<Student> valuesList = new ArrayList<>(students.values());
-        Collections.shuffle( valuesList );
-
+        Collections.shuffle(valuesList);
         return valuesList.get(0);
     }
 
@@ -55,7 +54,7 @@ public class StudentDB {
 
 }
 
-    //    private ArrayList<Student> students;
+//    private ArrayList<Student> students;
 //
 //    public void add(Student student){
 //        students.add(student);

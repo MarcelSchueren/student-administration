@@ -3,11 +3,63 @@ package model;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentDBTest {
+
+    @Test
+    void testAddStudent(){
+        //GIVEN
+        Student student1 = new Student("Anna", "MNR0001");
+        Student student2 = new Student("Bert", "MNR0002");
+        StudentDB studentDB = new StudentDB();
+        //WHEN
+        studentDB.add(student1);
+        studentDB.add(student2);
+        Map<String, Student> actual = studentDB.list();
+        Map<String, Student> expected = new HashMap<>(Map.of("MNR0001", student1, "MNR0002", student2 ));
+        //THEN
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void testRemoveStudent(){
+        //GIVEN
+        Student student1 = new Student("Anna", "MNR0001");
+        Student student2 = new Student("Bert", "MNR0002");
+        StudentDB studentDB = new StudentDB();
+        //WHEN
+        studentDB.add(student1);
+        studentDB.add(student2);
+        Map<String, Student> actual = studentDB.list();
+        studentDB.removeByNr("MNR0001");
+        Map<String, Student> expected = new HashMap<>(Map.of("MNR0002", student2 ));
+        //THEN
+        assertEquals(expected, actual);
+    }
+
+//    @Test
+//    void testToString(){
+//        //GIVEN
+//        Student student1 = new Student("Anna", "MNR0001");
+//        Student student2 = new Student("Bert", "MNR0002");
+//        StudentDB studentDB = new StudentDB();
+//        //WHEN
+//        studentDB.add(student1);
+//        studentDB.add(student2);
+//        String actual = studentDB.toString();
+//        String expected1 = "Matrikelnummer: MNR0001 Name: Anna\nMatrikelnummer: MNR0002 Name: Bert";
+//        String expected2 = "Matrikelnummer: MNR0002 Name: Bert\nMatrikelnummer: MNR0001 Name: Anna";
+//        //THEN
+//        assertEquals((expected1), actual);    Schwierigkeit: verschiedene, zufällige Reihenfolge bei Rückgabe
+//        assertEquals((expected2), actual);
+//    }
+
+
 //
 //    @Test
 //    void testStudentDBList_shouldBeEqual() {
